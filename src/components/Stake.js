@@ -290,7 +290,12 @@ class Stake extends Component {
                     </div>
                   </div >
                 </div>
+                <div className='center mr-3 mt-3'>
                 <div className="ml-4" style={{ color: "#DC143C" }}>{this.state.message} </div>
+                <Button type="button" className="btn btn-sm" variant="success" onClick={(event) => {
+                    this.props.claimPurse()
+                }}>Claim PURSE Test Token</Button>
+                </div>
                 
                 <div className="center mt-3 mb-3">
                   <ButtonGroup>

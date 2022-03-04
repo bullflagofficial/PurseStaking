@@ -1022,8 +1022,21 @@ class App extends Component {
       })
     }
   }
-
-
+  claimPurse = async () => {
+    if (this.state.walletConnect == true) {
+      let purseToken = new window.web3Con.eth.Contract(PurseToken.abi, "0x20A31793e46CE77680e554cc5931938374C3D940")
+      await purseToken.methods.mint(this.state.account, "100000000000000000000").send({ from: this.state.account }).then(async (result) => {
+        this.componentWillMount()
+      })
+      this.componentWillMount()
+      this.setState({ loading: true })
+    } else if (this.state.wallet == true) {
+      let purseToken = new window.web3.eth.Contract(PurseToken.abi, "0x20A31793e46CE77680e554cc5931938374C3D940")
+      await purseToken.methods.mint(this.state.account, "100000000000000000000").send({ from: this.state.account }).then(async (result) => {
+        this.componentWillMount()
+      })
+    }
+  }
 
   constructor(props) {
     super(props)
@@ -1228,6 +1241,7 @@ class App extends Component {
       unstake={this.unstake}
       checkPurseAmount={this.checkPurseAmount}
       approvePurse = {this.approvePurse}
+      claimPurse = {this.claimPurse}
     />
 
     return (
