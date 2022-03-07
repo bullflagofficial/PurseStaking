@@ -163,7 +163,7 @@ class Stake extends Component {
                   alert("Insufficient Share to withdraw!")
                 } else {
                   let checkPurseAmount = await this.props.checkPurseAmount(receiptWei)
-                  let getPurseAmount = receipt + " Share : " + checkPurseAmount  + " PURSE (" + checkPurseAmount*this.props.PURSEPrice + " USD)"
+                  let getPurseAmount = receipt + " Share : " + checkPurseAmount  + " PURSE (" + parseFloat(checkPurseAmount*this.props.PURSEPrice).toLocaleString('en-US', { maximumFractionDigits: 5 }) + " USD)"
                   this.setState({ getPurseAmount })
                   let purseMessage = "PURSE Staking:"
                   this.setState({ purseMessage })
@@ -239,11 +239,11 @@ class Stake extends Component {
               <div className='rowC'>
                 <div style={{width:"50%"}}>
                   <div className="textWhiteSmall mb-1" ><b>Staked Balance:</b></div>
-                  <div className="textWhiteSmall mb-3" style={{ color : "#B0C4DE" }}><b>{parseFloat(window.web3Bsc.utils.fromWei(purseStakingUserStake, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 5 })+ " PURSE (" + parseFloat(window.web3Bsc.utils.fromWei(purseStakingUserStake, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 5 })*this.props.PURSEPrice + " USD)"}</b></div>
+                  <div className="textWhiteSmall mb-3" style={{ color : "#B0C4DE" }}><b>{parseFloat(window.web3Bsc.utils.fromWei(purseStakingUserStake, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 5 })+ " PURSE (" + parseFloat(window.web3Bsc.utils.fromWei(purseStakingUserStake, 'Ether')*this.props.PURSEPrice).toLocaleString('en-US', { maximumFractionDigits: 5 }) + " USD)"}</b></div>
                 </div>
                 <div style={{width:"50%"}}>
                   <div className="textWhiteSmall mb-1" ><b>Total Staked (Pool):</b></div>
-                  <div className="textWhiteSmall mb-3" style={{ color : "#B0C4DE" }}><b>{parseFloat(window.web3Bsc.utils.fromWei(purseStakingTotalStake, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 5 })+ " PURSE (" + parseFloat(window.web3Bsc.utils.fromWei(purseStakingTotalStake, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 5 })*this.props.PURSEPrice + " USD)"}</b></div>
+                  <div className="textWhiteSmall mb-3" style={{ color : "#B0C4DE" }}><b>{parseFloat(window.web3Bsc.utils.fromWei(purseStakingTotalStake, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 5 })+ " PURSE (" + parseFloat(window.web3Bsc.utils.fromWei(purseStakingTotalStake, 'Ether')*this.props.PURSEPrice).toLocaleString('en-US', { maximumFractionDigits: 5 }) + " USD)"}</b></div>
                 </div> 
               </div>
               <div className='rowC'>
@@ -290,11 +290,11 @@ class Stake extends Component {
                     </div>
                   </div >
                 </div>
-                <div className='center mr-3 mt-3'>
                 <div className="ml-4" style={{ color: "#DC143C" }}>{this.state.message} </div>
-                <Button type="button" className="btn btn-sm" variant="success" onClick={(event) => {
+                <div className='center mr-3 mt-3'>
+                  <Button type="button" className="btn btn-sm" variant="success" onClick={(event) => {
                     this.props.claimPurse()
-                }}>Claim PURSE Test Token</Button>
+                  }}>Claim PURSE Test Token</Button>
                 </div>
                 
                 <div className="center mt-3 mb-3">
