@@ -238,11 +238,11 @@ class Stake extends Component {
               </div>
               <div className='rowC'>
                 <div style={{width:"50%"}}>
-                  <div className="textWhiteSmall mb-1" ><b>Stake Balance:</b></div>
+                  <div className="textWhiteSmall mb-1" ><b>Staked Balance:</b></div>
                   <div className="textWhiteSmall mb-3" style={{ color : "#B0C4DE" }}><b>{parseFloat(window.web3Bsc.utils.fromWei(purseStakingUserStake, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 5 })+ " PURSE (" + parseFloat(window.web3Bsc.utils.fromWei(purseStakingUserStake, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 5 })*this.props.PURSEPrice + " USD)"}</b></div>
                 </div>
                 <div style={{width:"50%"}}>
-                  <div className="textWhiteSmall mb-1" ><b>Total Stake:</b></div>
+                  <div className="textWhiteSmall mb-1" ><b>Total Staked (Pool):</b></div>
                   <div className="textWhiteSmall mb-3" style={{ color : "#B0C4DE" }}><b>{parseFloat(window.web3Bsc.utils.fromWei(purseStakingTotalStake, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 5 })+ " PURSE (" + parseFloat(window.web3Bsc.utils.fromWei(purseStakingTotalStake, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 5 })*this.props.PURSEPrice + " USD)"}</b></div>
                 </div> 
               </div>
@@ -252,7 +252,7 @@ class Stake extends Component {
                   <div className="textWhiteSmall mb-3" style={{ color : "#B0C4DE" }}><b>{parseFloat(window.web3Bsc.utils.fromWei(purseStakingUserReceipt, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 5 })+ " Share"}</b></div>
                 </div>
                 <div style={{width:"50%"}}>
-                  <div className="textWhiteSmall mb-1" ><b>Total Share:</b></div>
+                  <div className="textWhiteSmall mb-1" ><b>Total Share (Pool):</b></div>
                   <div className="textWhiteSmall mb-3" style={{ color : "#B0C4DE" }}><b>{parseFloat(window.web3Bsc.utils.fromWei(purseStakingTotalReceipt, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 5 })+ " Share"}</b></div>
                 </div> 
               </div>
