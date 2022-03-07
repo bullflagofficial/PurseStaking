@@ -224,7 +224,7 @@ class Stake extends Component {
               <div className="mb-4" style={{backgroundColor: "rgba(106, 90, 205, 0.2)", padding: "40px"}}>
                 <div className="textWhiteSmaller ml-4 mb-1"><b>✓&nbsp;&nbsp;&nbsp;Rewards are tokens from BDL deducted from each PURSE token transaction</b></div> 
                 <div className="textWhiteSmaller ml-4 mb-1"><b>✓&nbsp;&nbsp;&nbsp;The more PURSE you stake,&nbsp;&nbsp;the more you earn as PURSE is continuously compounding</b></div> 
-                <div className="textWhiteSmaller ml-4 mb-1"><b>✓&nbsp;&nbsp;&nbsp;Earn automatically as the PURSE rewards appear under your Stake Balance periodically</b></div> 
+                <div className="textWhiteSmaller ml-4 mb-1"><b>✓&nbsp;&nbsp;&nbsp;Earn automatically as the PURSE rewards appear under your Staked Balance periodically</b></div> 
                 <div className="textWhiteSmaller ml-4"><b>✓&nbsp;&nbsp;&nbsp;When you withdraw,&nbsp;&nbsp;you receive your original staked PURSE and PURSE rewards</b></div> 
               </div>
 
