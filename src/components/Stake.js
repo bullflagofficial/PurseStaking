@@ -312,10 +312,13 @@ class Stake extends Component {
                     <Button type="button" variant="outline-primary" className="btn" style={{ width : "140px" }} onClick={(event) => {
                       if (this.state.txDeposit === true && this.state.txWithdraw === false && this.state.txCheck === false) {
                         this.input.value = window.web3Bsc.utils.fromWei(purseTokenUpgradableBalance, 'Ether')
+                        this.changeHandler(this.input.value)
                       } else if (this.state.txDeposit === false && this.state.txWithdraw === true && this.state.txCheck === false) {
                         this.input.value = window.web3Bsc.utils.fromWei(purseStakingUserReceipt, 'Ether')
+                        this.changeHandler(this.input.value)
                       } else if (this.state.txDeposit === false && this.state.txWithdraw === false && this.state.txCheck === true) {
                         this.input.value = window.web3Bsc.utils.fromWei(purseStakingUserReceipt, 'Ether')
+                        this.changeHandler(this.input.value)
                       }          
                     }}>Max</Button>
                   </ButtonGroup>
