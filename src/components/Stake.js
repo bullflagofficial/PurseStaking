@@ -4,6 +4,8 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import bigInt from 'big-integer'
 import Popup from 'reactjs-popup';
 import { BsFillQuestionCircleFill } from 'react-icons/bs';
+import fox from '../metamask-fox.svg'
+import walletconnectLogo from '../walletconnect-logo.svg'
 
 import './App.css';
 
@@ -129,6 +131,7 @@ class Stake extends Component {
     let purseStakingUserAllowance = this.props.purseStakingUserAllowance
     let purseStakingTotalStake = this.props.purseStakingTotalStake
     let purseStakingTotalReceipt = this.props.purseStakingTotalReceipt
+    const contentStyle = { background: '#353A40', border: "1px solid #596169", width:"50%", minWidth:"450px"};
 
     return (
       <div className="mt-4">
@@ -176,7 +179,7 @@ class Stake extends Component {
             <div className="card cardbody ml-4" style={{ minWidth: '450px', width: "900px" }}>
 
             <ButtonGroup>
-              <Button type="button" className="btn" variant="ghost" style={{ color:"White", backgroundColor: this.state.stakeColor }} onClick={(event) => {
+              <Button type="button" variant="ghost" style={{ color:"White", backgroundColor: this.state.stakeColor }} onClick={(event) => {
                 this.clickHandlerDeposit()
               }}>Stake&nbsp;&nbsp;
                 <Popup trigger={open => (
@@ -190,7 +193,7 @@ class Stake extends Component {
                   <span className="textInfo"> Stake your PURSE to earn auto-compounding PURSE rewards over time</span>
                 </Popup></Button>
 
-              <Button type="button" className="btn" variant="ghost" style={{ color:"White", backgroundColor: this.state.withdrawColor }} onClick={(event) => {
+              <Button type="button" variant="ghost" style={{ color:"White", backgroundColor: this.state.withdrawColor }} onClick={(event) => {
                 this.clickHandlerWithdraw()
               }}>Withdraw&nbsp;&nbsp;
                <Popup trigger={open => (
@@ -204,7 +207,7 @@ class Stake extends Component {
                   <span className="textInfo"> Withdraw your stake and earn PURSE rewards anytime using your share</span>
                 </Popup></Button>
 
-              <Button type="button" className="btn" variant="ghost" style={{ color:"White", backgroundColor: this.state.checkColor }} onClick={(event) => {
+              <Button type="button" variant="ghost" style={{ color:"White", backgroundColor: this.state.checkColor }} onClick={(event) => {
                 this.clickHandlerCheck()
               }}>Check&nbsp;&nbsp;
               <Popup trigger={open => (
@@ -299,7 +302,7 @@ class Stake extends Component {
                 
                 <div className="center mt-3 mb-3">
                   <ButtonGroup>
-                    <Button type="submit" className="btn btn-primary" style={{ width : "140px" }} onClick={(event) => {
+                    <Button type="submit" style={{ width : "140px" }} onClick={(event) => {
                       if (this.state.txDeposit === true && this.state.txWithdraw === false && this.state.txCheck === false) {
                         this.clickHandlerDeposit()
                       } else if (this.state.txDeposit === false && this.state.txWithdraw === true && this.state.txCheck === false) {
@@ -309,7 +312,7 @@ class Stake extends Component {
                       }
                     }}>{this.state.buttonName}</Button>
 
-                    <Button type="button" variant="outline-primary" className="btn" style={{ width : "140px" }} onClick={(event) => {
+                    <Button type="button" variant="outline-primary" style={{ width : "140px" }} onClick={(event) => {
                       if (this.state.txDeposit === true && this.state.txWithdraw === false && this.state.txCheck === false) {
                         this.input.value = window.web3Bsc.utils.fromWei(purseTokenUpgradableBalance, 'Ether')
                         this.changeHandler(this.input.value)
@@ -342,9 +345,27 @@ class Stake extends Component {
             <div className="card-body">
               <div>
                 <div className="center textWhiteMedium mt-3 mb-3"><b>Connect wallet to stake PURSE</b></div>
-                <div className="center"><button type="button" className="btn btn-primary mt-4" onClick={async () => {
-                  await this.props.connectWallet()
-                }}>Connect</button></div>
+                <div className="center">
+                  <Popup trigger={<button type="button" className="btn btn-primary mt-3"> Connect </button>} modal {...{contentStyle}}>
+                  {close => (
+                    <div>
+                      <button className="close" style={{background:"White" ,borderRadius: "12px", padding: "2px 5px", fontSize:"18px"}} onClick={close}> 
+                        &times;
+                      </button>
+                      <div className="textWhiteMedium mb-2" style={{borderBottom: "1px Solid Gray", padding: "10px"}}> Connect a Wallet </div>
+                      <div className="center mt-4 mb-3">
+                        <Button type="button" variant="secondary" style={{width:"200px"}} onClick={async () => {
+                          await this.props.connectWallet()
+                        }}><img src={fox} width="23" height="23" alt=""/>&nbsp;Metamask</Button>&nbsp;&nbsp;&nbsp;
+                        <Button type="button" variant="secondary" style={{width:"200px"}} onClick={async () => {
+                          await this.props.WalletConnect()
+                        }}><img src={walletconnectLogo} width="26" height="23" alt=""/>&nbsp;WalletConnect</Button>
+                      </div>
+                    </div>
+                  )}
+                  </Popup>
+                </div>
+                
               </div>
             </div>
           </div>

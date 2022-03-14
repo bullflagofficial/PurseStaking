@@ -24,6 +24,7 @@ import './App.css'
 
 import PurseStaking from '../abis/PurseStaking.json'
 import PurseToken from '../abis/PurseTokenTest.json'
+import bigInt from 'big-integer';
 
 class App extends Component {
 
@@ -1001,9 +1002,8 @@ class App extends Component {
   checkPurseAmount = async (receipt) => {
     let purseStakingTotalStake = await this.loadPurseStakingTotalStake()
     let purseStakingTotalReceipt = await this.loadPurseStakingTotalReceipt()
-
-    let purseWei = (receipt * purseStakingTotalStake / purseStakingTotalReceipt).toString()
-    let purse = parseFloat(window.web3Bsc.utils.fromWei(purseWei, 'Ether')).toLocaleString('en-US', { maximumFractionDigits: 10 })
+    let purseWei = bigInt(receipt * purseStakingTotalStake / purseStakingTotalReceipt).toString()
+    let purse = window.web3Bsc.utils.fromWei(purseWei, 'Ether').toString()
     return purse
   }
 
@@ -1227,6 +1227,7 @@ class App extends Component {
     stakeContent = <Stake
       wallet={this.state.wallet}
       walletConnect={this.state.walletConnect}
+      WalletConnect={this.WalletConnect}
       connectWallet={this.connectWallet}
       account={this.state.account}
       PURSEPrice={this.state.PURSEPrice}

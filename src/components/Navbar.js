@@ -53,12 +53,12 @@ class Navb extends Component {
           <div className="mr-4">
             <NavLink to='/stake' >Stake</NavLink>
           </div>
-          {/*<div>
+          <div>
             <span className='hover' style={{ fontSize: '16px' }} onClick={() => {
               window.open(`https://pundix-purse.gitbook.io/untitled/`, '_blank')
             }}> Docs
             </span>
-          </div>*/}
+          </div>
         </div>
 
         <span>
