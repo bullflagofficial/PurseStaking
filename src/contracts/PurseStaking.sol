@@ -43,8 +43,8 @@ contract PurseStaking is Initializable, UUPSUpgradeable, OwnableUpgradeable, Pau
 
     function _authorizeUpgrade(address) internal override onlyOwner {}
 
-    event deposit(address indexed _from, uint256 _value);
-    event withdraw(address indexed _from, uint256 _value);
+    event Deposit(address indexed _from, uint256 _value);
+    event Withdraw(address indexed _from, uint256 _value);
 
     function enter(uint256 purseAmount) external whenNotPaused returns (bool success) {
         require(purseToken.balanceOf(msg.sender) >= purseAmount, "Insufficient Purse Token");
@@ -52,7 +52,6 @@ contract PurseStaking is Initializable, UUPSUpgradeable, OwnableUpgradeable, Pau
         uint256 totalPurse = purseToken.balanceOf(address(this));
         uint256 totalXPurse = totalReceiptSupply();
 
-        emit deposit(msg.sender, purseAmount);
         purseToken.transferFrom(msg.sender, address(this), purseAmount);
 
         if (totalXPurse <= 0 || totalPurse <= 0) {
@@ -65,6 +64,7 @@ contract PurseStaking is Initializable, UUPSUpgradeable, OwnableUpgradeable, Pau
             userInfo[msg.sender].receiptToken += newReceipt;
             _totalReceiptSupply += newReceipt;
         }
+        emit Deposit(msg.sender, purseAmount);
         return true;
     }
 
@@ -78,7 +78,7 @@ contract PurseStaking is Initializable, UUPSUpgradeable, OwnableUpgradeable, Pau
         _totalReceiptSupply -= xPurseAmount;
 
         uint256 purseTransfer = safePurseTransfer(purseAmount);
-        emit withdraw(msg.sender, purseTransfer);
+        emit Withdraw(msg.sender, purseTransfer);
         purseToken.transfer(msg.sender, purseTransfer);
         return true;
     }
