@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
 import Web3 from 'web3'
-import WalletConnectProvider from "@walletconnect/web3-provider";
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import WalletConnectProvider from "@walletconnect/web3-provider"
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import bigInt from 'big-integer'
 
 import LpToken from '../abis/LpToken.json'
 import IPancakePair from '../abis/IPancakePair.json'
 import PurseTokenUpgradable from '../abis/PurseTokenUpgradable.json'
 import RestakingFarm from '../abis/RestakingFarm.json'
+
+import PurseStaking from '../abis/PurseStaking.json'
+import PurseToken from '../abis/PurseTokenTest.json'
 
 import PurseFarm from '../farm/farmPurse.json'
 import Navb from './Navbar'
@@ -18,13 +22,11 @@ import Popup from './Popup'
 import Farm from './Farm'
 import Distribution from './Distribution'
 import Stake from './Stake'
+import Landing from './Landing'
+import Footer from './Footer'
 
 import './Popup.css'
 import './App.css'
-
-import PurseStaking from '../abis/PurseStaking.json'
-import PurseToken from '../abis/PurseTokenTest.json'
-import bigInt from 'big-integer';
 
 class App extends Component {
 
@@ -35,6 +37,7 @@ class App extends Component {
     this.loadTVLAPR()
     while ((this.state.wallet || this.state.walletConnect) == true) {
       await this.loadBlockchainUserData()
+      await this.loadBlockchainStakingData()
       await this.delay(10000);
     }
   }
@@ -228,20 +231,25 @@ class App extends Component {
   }
 
   // ##############################################################################################################################
-  async loadBlockchainUserData() {
+  async loadBlockchainStakingData() {
+    // Load PurseStaking
     let purseStakingUserInfo = await this.loadPurseStakingUserInfo()
     let purseStakingUserStake = await this.loadPurseStakingUserStake()
-    let purseStakingUserAllowance = await this.loadPurseStakingUserAllowance()
-    let purseStakingUserPurse = await this.loadPurseStakingUserPurse()
     let purseStakingTotalStake = await this.loadPurseStakingTotalStake()
     let purseStakingTotalReceipt = await this.loadPurseStakingTotalReceipt()
 
     this.setState({ purseStakingUserReceipt: purseStakingUserInfo.toString()})
     this.setState({ purseStakingUserStake: purseStakingUserStake.toString() })
-    this.setState({ purseStakingUserAllowance: purseStakingUserAllowance.toString() })
-    this.setState({ purseStakingUserPurse: purseStakingUserPurse.toString() })
     this.setState({ purseStakingTotalStake: purseStakingTotalStake.toString() })
     this.setState({ purseStakingTotalReceipt: purseStakingTotalReceipt.toString() })
+  }
+  
+  async loadBlockchainUserData() {
+    //Load PurseToken
+    let purseStakingUserAllowance = await this.loadPurseStakingUserAllowance()
+    let purseStakingUserPurse = await this.loadPurseStakingUserPurse()
+    this.setState({ purseStakingUserAllowance: purseStakingUserAllowance.toString() })
+    this.setState({ purseStakingUserPurse: purseStakingUserPurse.toString() })
 
     // Load PurseTokenUpgradable
     /*let userResponse0 = this.loadPurseTokenBalance()
@@ -1267,8 +1275,7 @@ class App extends Component {
               <main role="main" className="col-lg-12 ml-auto mr-auto" style={{ maxWidth: '1000px' }}>
                 <div className="content mr-auto ml-auto">
                   <Switch>
-                    <Route path="/" exact > {stakeContent} </Route>
-                    {/*<Route path="/" exact > {maincontent} </Route>*/}
+                    <Route path="/" exact > <Landing/> </Route>
                     <Route path="/home" exact > {maincontent} </Route>
                     <Route path="/lpfarm/menu" exact > {menucontent} </Route>
                     <Route path="/lpfarm/farmInfo" exact > {farmInfoContent} </Route>
@@ -1284,6 +1291,7 @@ class App extends Component {
               </main>
             </div>
           </div>
+          <Footer/>
         </div>
       </Router>
     );
