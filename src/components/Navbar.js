@@ -108,8 +108,8 @@ class Navb extends Component {
                       )}
                         on="hover"
                         position="bottom right"
-                        offsetY={6}
-                        offsetX={0}
+                        offsetY={-17}
+                        offsetX={-5}
                         mouseLeaveDelay={200}
                         contentStyle={{ padding: '3px' }}
                         arrow={false}
