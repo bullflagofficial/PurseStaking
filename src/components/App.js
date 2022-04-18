@@ -1288,6 +1288,7 @@ class App extends Component {
       approvePurse = {this.approvePurse}
       claimPurse = {this.claimPurse}
       stakeLoading={this.state.stakeLoading}
+      sum30TransferAmount={this.state.sum30TransferAmount}
     />
 
     return (
@@ -1310,7 +1311,7 @@ class App extends Component {
           <div className="container-fluid mt-4">
             <div className="row">
               <main role="main" className="col-lg-12 ml-auto mr-auto" style={{ maxWidth: '1000px' }}>
-                <div className="content mr-auto ml-auto">
+                <div className="content mr-auto ml-auto" id="content">
                   <Switch>
                     <Route path="/" exact > <Landing/> </Route>
                     <Route path="/home" exact > {maincontent} </Route>
