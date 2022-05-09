@@ -25,7 +25,7 @@ import DropdownItem from 'react-bootstrap/esm/DropdownItem'
 class Navb extends Component {
   render() {
     return (
-      <nav className="navbar navbar-dark top bg-dark flex-md-nowrap p-0 shadow" style={{height:"50px",position:"fixed",width:"100%", top:"0",zIndex:"2"}}>
+      <nav className="navbar navbar-dark top bg-dark flex-md-nowrap p-0 shadow" style={{height:"50px",position:"fixed",width:"100%", top:"0",zIndex:"9999"}}>
         <div className="navbar-brand col-sm-3 col-md-2 mt-1 md-1 mr-0 rowB">
           <MediaQuery maxWidth={960}>
             <Menu>
@@ -101,7 +101,7 @@ class Navb extends Component {
                   {this.props.wallet || this.props.walletConnect ?
                     <div>
                       <Dropdown>
-                        <Dropdown.Toggle variant="transparent" style={{padding:0}}><Buttons variant="secondary" size="sm"> {this.props.first4Account}...{this.props.last4Account}</Buttons></Dropdown.Toggle>
+                        <Dropdown.Toggle variant="secondary" size="sm">{this.props.first4Account}...{this.props.last4Account}</Dropdown.Toggle>
                         <Dropdown.Menu style={{backgroundColor:"#28313b", marginTop:"8px"}}>
                           <Dropdown.Item>
                           <div className='dropdown0' style={{ paddingBottom: '12px' }} onClick={() => {
@@ -121,7 +121,7 @@ class Navb extends Component {
                       
                     </div> : <div>
                       <Dropdown>
-                        <Dropdown.Toggle variant="transparent" style={{padding:0}}><Buttons variant="secondary" size="sm" > Connect Wallet</Buttons></Dropdown.Toggle>
+                        <Dropdown.Toggle variant="secondary" size="sm">Connect Wallet</Dropdown.Toggle>
                         <Dropdown.Menu style={{backgroundColor:"#28313b", marginTop:"8px"}}>
                         <Dropdown.Item>
                         <div className='dropdown0' style={{ paddingBottom: '12px' }} onClick={async () => {
